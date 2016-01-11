@@ -1,7 +1,5 @@
 # functional-programming-in-scala
 
------
-
 ## 주제
  여러 프로그래밍 언어가 지향하고 있는 각각의 패러다임을 학습
 
