@@ -35,6 +35,6 @@
  - [2016.03.01](https://github.com/plalab/functional-programming-in-scala/tree/master/03_01)
  - [2016.03.08](https://github.com/plalab/functional-programming-in-scala/tree/master/03_08)
  - [2016.03.15](https://github.com/plalab/functional-programming-in-scala/tree/master/03_15)
- - [2016.03.22](https://github.com/plalab/functional-programming-in-scala/tree/master/04_22)
- - [2016.03.29](https://github.com/plalab/functional-programming-in-scala/tree/master/04_29)
+ - [2016.03.22](https://github.com/plalab/functional-programming-in-scala/tree/master/03_22)
+ - [2016.03.29](https://github.com/plalab/functional-programming-in-scala/tree/master/03_29)
  - [2016.04.03](https://github.com/plalab/functional-programming-in-scala/tree/master/04_03)
