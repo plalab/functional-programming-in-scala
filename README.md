@@ -24,6 +24,9 @@
 ## 결과물
 예제 소스코드와 README
 
+## Reference
+1. [Source Code In Github](https://github.com/fpinscala/fpinscala) 
+
 ## History
  - [2016.01.12](https://github.com/plalab/functional-programming-in-scala/tree/master/01_12)
  - [2016.01.19](https://github.com/plalab/functional-programming-in-scala/tree/master/01_19)
