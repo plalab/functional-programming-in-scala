@@ -3,7 +3,9 @@
   */
 
 sealed trait List[+A]
+
 case object Nil extends List[Nothing]
+
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 object List {
@@ -19,10 +21,10 @@ object List {
   }
 
   def apply[A](as: A*): List[A] =
-  if(as.isEmpty) Nil
-  else Cons(as.head, apply(as.tail: _*))
+    if (as.isEmpty) Nil
+    else Cons(as.head, apply(as.tail: _*))
 
-  val x = List(1,2,3,4,5) match {
+  val x = List(1, 2, 3, 4, 5) match {
     case Cons(x, Cons(2, Cons(4, _))) => x
     case Nil => 42
     case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
@@ -31,15 +33,26 @@ object List {
   }
 }
 
+// def dropWhile[A](l: List[A], f: A => Boolean): List[A]
+
 object Runner {
   def main(args: Array[String]): Unit = {
-     val x = List(1,2,3,4,5) match {
-       case Cons(x, Cons(2, Cons(4, _))) => x
-       case Nil => 42
-       case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
-       case Cons(h, t) => h + List.sum(t)
-       case _ => 101
-     }
+    val x = List(1, 2, 3, 4, 5) match {
+      case Cons(x, Cons(2, Cons(4, _))) => x
+      case Nil => 42
+      case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
+      case Cons(h, t) => h + List.sum(t)
+      case _ => 101
+    }
+    def dropWhile[A](as: List[A])(f: A => Boolean): List[A] = as match {
+      case Cons(h, t) if f(h) => dropWhile(t)(f)
+      case _ => as
+    }
     println(x)
+
+    val xs: List[Int] = List(1, 2, 3, 4, 5)
+    //    val ex1 = dropWhile(xs, (x:Int) => x < 4 )
+    val ex1 = dropWhile(xs)(x => x < 4)
+    println(ex1)
   }
 }
