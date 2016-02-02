@@ -24,12 +24,33 @@ object List {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
 
-  val x = List(1, 2, 3, 4, 5) match {
-    case Cons(x, Cons(2, Cons(4, _))) => x
-    case Nil => 42
-    case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
-    case Cons(h, t) => h + sum(t)
-    case _ => 101
+  // 연습문제 3.2 - 45p
+  def tail[A](as: List[A]): List[A] = as match {
+    case Nil => Nil
+    case Cons(x, xs) => xs
+    // prefer case Cons(_, xs) => xs
+  }
+
+  // 연습문제 3.2 - 45p
+  def setHead[A](a: A, as: List[A]): List[A] = as match {
+    case Nil => Cons(a, Nil)
+    case Cons(_, xs) => Cons(a, as)
+    // prefer case Cons(_, xs) => xs
+  }
+
+  // 연습문제 3.4 - 46p
+  def drop[A](l: List[A], n: Int): List[A] = {
+    if (n <= 0) l
+    else l match {
+      case Nil => Nil
+      case Cons(_, xs) => drop(xs, n - 1)
+    }
+  }
+
+  // 연습문제 3.5 - 46p
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) => if(f(x)) dropWhile(xs, f) else dropWhile(l, f)
   }
 }
 
@@ -37,6 +58,7 @@ object List {
 
 object Runner {
   def main(args: Array[String]): Unit = {
+    // 연습문제 3.1 - 43p
     val x = List(1, 2, 3, 4, 5) match {
       case Cons(x, Cons(2, Cons(4, _))) => x
       case Nil => 42
@@ -54,5 +76,13 @@ object Runner {
     //    val ex1 = dropWhile(xs, (x:Int) => x < 4 )
     val ex1 = dropWhile(xs)(x => x < 4)
     println(ex1)
+
+    println(List.tail(xs))
+
+    println(List.setHead(9, xs))
+
+    println(List.drop(xs, 3))
+
+    println(List.dropWhile(xs, (x:Int) => x > 3))
   }
 }
