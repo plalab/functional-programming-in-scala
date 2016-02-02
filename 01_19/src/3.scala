@@ -49,9 +49,20 @@ object List {
 
   // 연습문제 3.5 - 46p
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
-    case Nil => Nil
-    case Cons(x, xs) => if(f(x)) dropWhile(xs, f) else dropWhile(l, f)
+    case Cons(x, xs) if f(x) => dropWhile(xs, f)
+    case _ => l
   }
+
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = as match {
+    case Nil => z
+    case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+  }
+
+  def sum2(ns: List[Int]) =
+    foldRight(ns, 0)(_ + _)
+
+  def product2(ns: List[Double]) =
+    foldRight(ns, 1.0)(_ * _)
 }
 
 // def dropWhile[A](l: List[A], f: A => Boolean): List[A]
@@ -74,7 +85,7 @@ object Runner {
 
     val xs: List[Int] = List(1, 2, 3, 4, 5)
     //    val ex1 = dropWhile(xs, (x:Int) => x < 4 )
-    val ex1 = dropWhile(xs)(x => x < 4)
+    val ex1 = dropWhile(xs)(_ < 4)
     println(ex1)
 
     println(List.tail(xs))
@@ -83,6 +94,11 @@ object Runner {
 
     println(List.drop(xs, 3))
 
-    println(List.dropWhile(xs, (x:Int) => x > 3))
+    println(List.dropWhile(xs, (x: Int) => x > 4))
+
+    val l :List[Double] = List(1, 2, 3, 0.0, 4 ,5)
+    println(l)
+    println(List.product2(l))
+    println(List.foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_)))
   }
 }
