@@ -36,7 +36,6 @@
 
 ### _Either 자료 형식_
 
-
 ## Java 8 Lambda & Stream Overview
 
 ## Programming in scala 계획 
